@@ -42,7 +42,12 @@ add_hook('ClientAreaHeadOutput', 1, function($vars) {
 
             // Remove the web root and replace with the full system url
             $canonical = substr($canonical, strlen($webRoot));
-            $canonical = htmlspecialchars($vars['systemurl'].$canonical);
+            $canonical = $vars['systemurl'].$canonical;
+
+            // It appears that the URL may already be HTML safe but since I cannot know if this is consistently true and trusted I'll play it safe
+            if (preg_match('/[<>"]/', $canonical)) {
+                $canonical = htmlspecialchars($canonical);
+            }
             
             global $smarty;
             $smarty->assign('canonical', $canonical);
