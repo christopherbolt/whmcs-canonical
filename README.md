@@ -15,6 +15,9 @@ A canonical url meta tag tells search engines which URL is the correct one.
 I also recommend adding open graph tags so that people cannot share mis-leading URLs on social media (like the this-hosting-company-sucks example above).
 This hook adds a $canonical variable to templates that you could use to implement open graph url meta tags in your theme's header template. Implementation of open graph tags is outside the scope of this module but I have added an example in the installation section of this read me.
 
+### Why I made this
+All the code examples I've fount online for implementing canonical URLs in WHMCS rely on using the REQUEST_URI. This is a very bad idea because it doesn't solve the duplicate URL problem and allows the canonical url to be manipulated.
+
 ## Requirements
 Tested with WHMCS version 8.12.1. I will not maintain support for older versions.
 
