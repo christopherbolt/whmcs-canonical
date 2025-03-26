@@ -13,7 +13,7 @@ For example the following URLs would all go to the same page:
 
 A canonical url meta tag tells search engines which URL is the correct one.
 I also recommend adding open graph tags so that people cannot share mis-leading URLs on social media (like the this-hosting-company-sucks example above).
-This hook adds a $canonical variable to templates that you could use to implement open graph url meta tags in your WHMCS header template. Implementation of open graph tags is outside the scope of this module so don't ask.
+This hook adds a $canonical variable to templates that you could use to implement open graph url meta tags in your theme's header template. Implementation of open graph tags is outside the scope of this module but I have added an example in the installation section of this read me.
 
 ## Requirements
 Tested with WHMCS version 8.12.1. I will not maintain support for older versions.
@@ -28,3 +28,22 @@ If your URLs look something like https://www.yourcompany.com/index.php?rb=knowle
 Always use the latest version from https://github.com/christopherbolt/whmcs-canonical/
 
 Copy the includes/hooks/canonical.php file to your WHMCS installation.
+
+### Adding Open Graph Tags
+To implement open graph tags you could do something like this in your theme's includes/head.tpl file:
+
+```html
+{if $canonical}
+{capture name="metatitle" assign="metatitle"}{if $kbarticle.title}{$kbarticle.title} - {elseif $templatefile == 'viewannouncement'}{$title} - {/if}{$pagetitle} - {$companyname}{/capture}
+
+<meta property="og:url" content="{$canonical}">
+<meta property="og:type" content="{if $kbarticle.title || $templatefile == 'viewannouncement'}article{else}website{/if}">
+<meta property="og:title" content="{$metatitle}">
+<meta property="og:image" content="YOUR_IMAGE_URL.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{$canonical}">
+<meta property="twitter:title" content="{$metatitle}">
+<meta property="twitter:image" content="YOUR_IMAGE_URL.png">
+{/if}
+```
