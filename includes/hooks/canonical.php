@@ -28,6 +28,7 @@ add_hook('ClientAreaHeadOutput', 1, function($vars) {
                 foreach($vars['productgroups'] as $group) {
                     if ($group['gid'] == $vars['gid']) {
                         $canonical = $group['routePath'];
+                        break;
                     }
                 }
             }
