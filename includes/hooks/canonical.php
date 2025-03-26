@@ -40,6 +40,9 @@ add_hook('ClientAreaHeadOutput', 1, function($vars) {
                 $canonical .= '/'.$vars['urlfriendlytitle'].'.html';
             }
 
+            // Make a choice between /index.php or / (I've chosen / as the correct URL)
+            if ($canonical == $webRoot.'index.php') $canonical = $webRoot;
+
             // Remove the web root and replace with the full system url
             $canonical = substr($canonical, strlen($webRoot));
             $canonical = $vars['systemurl'].$canonical;
