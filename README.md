@@ -9,14 +9,17 @@ For example the following URLs would all go to the same page:
 
 /knowledgebase/1/
 
-/knowledgebase/1/this-hosting-company-sucks.html
+/knowledgebase/1/this-part-can-be-anything
 
-A canonical url meta tag tells search engines which URL is the correct one.
+/knowledgebase/1/this-hosting-company-sucks
+
+A canonical url meta tag tells search engines which URL is the correct official URL.
+
 I also recommend adding open graph tags so that people cannot share mis-leading URLs on social media (like the this-hosting-company-sucks example above).
 This hook adds a $canonical variable to templates that you could use to implement open graph url meta tags in your theme's header template. Implementation of open graph tags is outside the scope of this module but I have added an example in the installation section of this read me.
 
 ### Why I made this
-All the code examples I've fount online for implementing canonical URLs in WHMCS rely on using the REQUEST_URI. This is a very bad idea because it doesn't solve the duplicate URL problem and allows the canonical url to be manipulated.
+All the code examples I've found online for implementing canonical URLs in WHMCS rely on using the REQUEST_URI. This is a very bad idea because it doesn't solve the duplicate URL problem and allows the canonical url to be manipulated. Setting the canonical meta tag using REQUEST_URI means that it would point to the current URL rather than the correct URL.
 
 ## Requirements
 Tested with WHMCS version 8.12.1. I will not maintain support for older versions.
