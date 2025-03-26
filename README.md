@@ -9,9 +9,9 @@ For example the following URLs would all go to the same page:
 
 /knowledgebase/1/
 
-/knowledgebase/1/this-part-can-be-anything
+/knowledgebase/1/this-part-can-be-anything.html
 
-/knowledgebase/1/this-hosting-company-sucks
+/knowledgebase/1/this-hosting-company-sucks.html
 
 A canonical url meta tag tells search engines which URL is the correct official URL.
 
