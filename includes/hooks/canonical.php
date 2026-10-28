@@ -16,7 +16,7 @@
 add_hook('ClientAreaHeadOutput', 1, function($vars) {
 
     // Optional, enable to redirect to correct URL, only for knowledgebase and announcements
-    $redirect = false;
+    $redirect = true;
 
     if (isset($vars['breadcrumb']) && is_array($vars['breadcrumb'])) {
         $last_crumb = $vars['breadcrumb'][array_key_last($vars['breadcrumb'])];
