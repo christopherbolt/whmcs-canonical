@@ -14,6 +14,10 @@
 // includes/hooks/canonical.php
 
 add_hook('ClientAreaHeadOutput', 1, function($vars) {
+
+    // Optional, enable to redirect to correct URL, only for knowledgebase and announcements
+    $redirect = false;
+
     if (isset($vars['breadcrumb']) && is_array($vars['breadcrumb'])) {
         $last_crumb = $vars['breadcrumb'][array_key_last($vars['breadcrumb'])];
         if (!empty($last_crumb['link'])) {
@@ -42,6 +46,14 @@ add_hook('ClientAreaHeadOutput', 1, function($vars) {
 
             // Make a choice between /index.php or / (I've chosen / as the correct URL)
             if ($canonical == $webRoot.'index.php') $canonical = $webRoot;
+
+            // Optional redirect to correct URL, only for knowledgebase and announcements
+            if ($redirect) {
+                if (!empty($_SERVER['REQUEST_URI']) && preg_match('#/(announcements|knowledgebase)/[0-9]+#', $canonical) && $_SERVER['REQUEST_URI'] != $canonical) {
+                    header('Location: ' . htmlspecialchars_decode($canonical), true, 301);
+                    exit;
+                }
+            }
 
             // Remove the web root and replace with the full system url
             $canonical = substr($canonical, strlen($webRoot));
